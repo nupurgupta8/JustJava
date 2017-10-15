@@ -52,8 +52,11 @@ public class MainActivity extends AppCompatActivity {
         String name = addName();
         boolean hasWhippedCream = verifyIfHasWhippedCream();
         boolean hasChocolate = verifyIfHasChocolate();
+		
         calculatePrice(hasWhippedCream, hasChocolate);
         String priceMessage = createOrderSummary(hasWhippedCream, hasChocolate, name);
+		
+		// Creating new intent to send this order details over an email.
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
